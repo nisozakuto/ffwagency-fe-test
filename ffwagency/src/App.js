@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Cards from "./components/Cards";
+import "./App.css";
 
 export default class App extends Component {
   constructor() {
@@ -53,10 +54,29 @@ export default class App extends Component {
         this.setState({ tabs: tabsRes });
       });
   }
+  // fetchTab(tabInfo) {
+  //   fetch(`http://json.ffwagency.md/${tabInfo}`, {
+  //     method: "GET",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       console.log("tabinfo", tabInfo);
+  //       if (tabInfo === "font_a") {
+  //         this.setState({
+  //           font_a: res,
+  //         });
+  //       } else if (tabInfo === "font_b") {
+  //         this.setState({
+  //           font_b: res,
+  //         });
+  //       }
+  //       console.log(res);
+  //     });
+  // }
 
   render() {
     return (
-      <div>
+      <section>
         <Tabs>
           <TabList>
             {this.state.tabs.length > 0 ? (
@@ -79,15 +99,15 @@ export default class App extends Component {
                 <TabPanel>
                   <h2>{e.content_endpoint}</h2>
                   {e.content_endpoint === "fonts_a" ? (
-                    <section id="font-a">First Section</section>
+                    <article id="fonts-a">First Section</article>
                   ) : (
-                    <section id="font-b">
+                    <article id="buy-fonts">
                       {this.state.font_b ? (
                         <p>{this.state.font_b.content}</p>
                       ) : (
                         <p>No data here</p>
                       )}{" "}
-                    </section>
+                    </article>
                   )}
                 </TabPanel>
               );
@@ -96,7 +116,7 @@ export default class App extends Component {
             <p>Loading...</p>
           )}
         </Tabs>
-      </div>
+      </section>
     );
   }
 }
