@@ -54,25 +54,6 @@ export default class App extends Component {
         this.setState({ tabs: tabsRes });
       });
   }
-  // fetchTab(tabInfo) {
-  //   fetch(`http://json.ffwagency.md/${tabInfo}`, {
-  //     method: "GET",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((res) => {
-  //       console.log("tabinfo", tabInfo);
-  //       if (tabInfo === "font_a") {
-  //         this.setState({
-  //           font_a: res,
-  //         });
-  //       } else if (tabInfo === "font_b") {
-  //         this.setState({
-  //           font_b: res,
-  //         });
-  //       }
-  //       console.log(res);
-  //     });
-  // }
 
   render() {
     return (
@@ -97,9 +78,16 @@ export default class App extends Component {
             this.state.tabs.map((e) => {
               return (
                 <TabPanel>
-                  <h2>{e.content_endpoint}</h2>
                   {e.content_endpoint === "fonts_a" ? (
-                    <article id="fonts-a">First Section</article>
+                    <article id="fonts-a">
+                      {this.state.font_a.content ? (
+                        this.state.font_a.content.map((e) => {
+                          return <Cards info={e} />;
+                        })
+                      ) : (
+                        <p></p>
+                      )}
+                    </article>
                   ) : (
                     <article id="buy-fonts">
                       {this.state.font_b ? (
