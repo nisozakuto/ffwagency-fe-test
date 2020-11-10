@@ -8,8 +8,8 @@ export default class App extends Component {
   constructor() {
     super();
     this.state = {
-      tabs: [],
-      font_a: [],
+      tabs: '',
+      font_a: '',
       font_b: '',
       selectedItem: '',
       activeIndex: '',
@@ -100,10 +100,10 @@ export default class App extends Component {
                     </aside>
                   ) : (
                     <article id="buy-fonts">
-                      {this.state.font_b ? (
+                      {(this.state.font_b && this.state.font_b.content) ? (
                         <p>{this.state.font_b.content}</p>
                       ) : (
-                        <p>No data here</p>
+                        <p>No data here yet...</p>
                       )}{" "}
                     </article>
                   )}
