@@ -5,9 +5,9 @@ export default class cards extends Component {
     return (
       <article>
         {this.props.info ? (
-          <ul onClick={this.props.onToggle}>
+          <ul>
             {console.log(this.props)}
-            <button alt={this.props.info.color_blind_label} onClick={()=>{this.props.SelectedItem(this.props.info.id)}}>{this.props.info.abbr} </button>
+            <button style={{backgroundColor : this.props.info.color}} className={(this.props.selectedItem === this.props.info.id) ? "halfOpacity" : "fullOpacity" } alt={this.props.info.color_blind_label} onClick={()=>{this.props.setSelectedItem(this.props.info.id)}}>{this.props.info.abbr} </button>
             <li>{this.props.info.label}</li>
           </ul>
         ) : (

@@ -10,29 +10,26 @@ export default class App extends Component {
     this.state = {
       tabs: [],
       font_a: [],
-      font_b: [],
+      font_b: '',
       selectedItem: '',
       activeIndex: '',
-
     };
   }
   componentDidMount() {
     this.fetchTabs();
   }
 
-  setSelectedItem = (selectedItemId) =>{
-    
-    console.log(selectedItemId)
+  setSelectedItem = (selectedItem) =>{
     this.setState({
-      selectedItem: selectedItemId
+      selectedItem
     })
   }
 
   onToggle=()=>{
     console.log('ontoggle')
     }
+
   handleSelect = (id) => {
-    {
       if (id === "fonts_a") {
         fetch(`http://json.ffwagency.md/${id}`, {
           method: "GET",
@@ -55,7 +52,6 @@ export default class App extends Component {
             });
           });
       }
-    }
   };
 
   fetchTabs() {
@@ -77,7 +73,7 @@ export default class App extends Component {
             {this.state.tabs.length > 0 ? (
               this.state.tabs.map((e) => {
                 return (
-                  <Tab
+                  <Tab key={e.id}
                     onClick={this.handleSelect.bind(this, e.content_endpoint)}
                   >
                     {e.label}
@@ -91,12 +87,12 @@ export default class App extends Component {
           {this.state.tabs.length > 0 ? (
             this.state.tabs.map((e) => {
               return (
-                <TabPanel>
+                <TabPanel key={e.label}>
                   {e.content_endpoint === "fonts_a" ? (
                     <aside>
                       {this.state.font_a.content ? (
                         this.state.font_a.content.map((e) => {
-                          return <Cards info={e} selectedItem={this.setSelectedItem} onToggle={this.onToggle}/>;
+                          return <Cards key={e.id} info={e} selectedItem={this.state.selectedItem} setSelectedItem={this.setSelectedItem}/>;
                         })
                       ) : (
                         <p></p>
