@@ -11,14 +11,27 @@ export default class App extends Component {
       tabs: [],
       font_a: [],
       font_b: [],
+      selectedItem: '',
+      activeIndex: '',
+
     };
   }
   componentDidMount() {
     this.fetchTabs();
   }
 
+  setSelectedItem = (selectedItemId) =>{
+    
+    console.log(selectedItemId)
+    this.setState({
+      selectedItem: selectedItemId
+    })
+  }
+
+  onToggle=()=>{
+    console.log('ontoggle')
+    }
   handleSelect = (id) => {
-    console.log("Handle Select ID _++++++", id);
     {
       if (id === "fonts_a") {
         fetch(`http://json.ffwagency.md/${id}`, {
@@ -56,6 +69,7 @@ export default class App extends Component {
   }
 
   render() {
+    let active = this.state.activeIndex
     return (
       <section>
         <Tabs>
@@ -79,15 +93,15 @@ export default class App extends Component {
               return (
                 <TabPanel>
                   {e.content_endpoint === "fonts_a" ? (
-                    <article id="fonts-a">
+                    <aside>
                       {this.state.font_a.content ? (
                         this.state.font_a.content.map((e) => {
-                          return <Cards info={e} />;
+                          return <Cards info={e} selectedItem={this.setSelectedItem} onToggle={this.onToggle}/>;
                         })
                       ) : (
                         <p></p>
                       )}
-                    </article>
+                    </aside>
                   ) : (
                     <article id="buy-fonts">
                       {this.state.font_b ? (
