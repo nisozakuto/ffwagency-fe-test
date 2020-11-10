@@ -1,20 +1,64 @@
 html {
+  font-family: 'Montserrat', sans-serif;
+
 }
 
 section {
   margin: 0 auto;
   width: 80vw;
   border: 1px solid rgb(206, 214, 229);
+  border-radius: 2%;
 }
 
 article {
   margin: 0 5%;
 }
 
-#fonts-a {
+#my-fonts {
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  flex-wrap: wrap;
 }
 
 #buy-fonts {
   display: flex;
   align-items: center;
 }
+
+aside button:hover{
+  cursor: pointer;
+}
+
+aside ul:focus{
+  opacity: 50%;
+  background-color: saddlebrown;
+}
+
+aside button{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  background-color: rgb(206, 214, 229);
+  padding:10px;
+  width: 100px;
+  height: 100px;
+  border-radius: 20%;
+  border-color: 1px black;
+  font-weight: 800;
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, .4)
+}
+
+.halfOpacity{
+  opacity: 50%;
+}
+
+.fullOpacity{
+  opacity: 100%;
+}
+
+ul{
+  
+}
+
